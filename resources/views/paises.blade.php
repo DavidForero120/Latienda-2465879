@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>Paises de la sur america</h1>
+    <h1 align="center">Paises de la sur america</h1>
     <table class="table table-striped table-dark">
         <thead>
             <tr>
@@ -24,20 +24,26 @@
         <tbody>
             @foreach($paises as $pais => $infopais)
             <tr>
-                <td>
+                <td rowspan="{{ count($infopais['ciudades'])}}">
                     {{ $pais }}
                 </td>
-                <td>
+                <td rowspan="{{ count($infopais['ciudades'])}}">
                     {{ $infopais["capital"] }}
                 </td>
-                <td>
+                <td rowspan="{{ count($infopais['ciudades'])}}">
                     {{ $infopais["moneda"] }}
                 </td>
-                <td>
+                <td rowspan="{{ count($infopais['ciudades'])}}">
                     {{ $infopais["poblacion"] }}
                 </td>
-
+                @foreach($infopais["ciudades"] as $ciudad )
+                <td>
+                    {{ $ciudad }}
+                </td>
             </tr>
+            @endforeach
+
+
             @endforeach
         </tbody>
         <tfoot></tfoot>
