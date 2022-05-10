@@ -61,6 +61,8 @@
                 @foreach($infopais["ciudades"] as $ciudad )
                 <td class="cid">
                     {{ $ciudad }}
+                    
+                        
                 </td>
             </tr>
             @endforeach
