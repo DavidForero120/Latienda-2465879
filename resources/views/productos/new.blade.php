@@ -8,7 +8,7 @@
     </h1>
 </div>
 <div class="row">
-    <form class="col s8" action="{{ url('productos') }}" method="POST">
+    <form class="col s8" action="{{ url('productos') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row">
@@ -16,7 +16,7 @@
                 <input type="text" placeholder="Nombre del producto" id="nombre" name="nombre">
                 <label for="nombre">Nombre del producto:</label>
             </div>
-        </div>
+        </div><span>{{ $errors->first('nombre') }}</span>
 
 
         <div class="row">
@@ -24,31 +24,31 @@
                 <textarea id="desc" class="materialize-textarea" name="desc"></textarea>
                 <label for="desc">Descripción</label>
             </div>
-        </div>
+        </div><span>{{ $errors->first('desc') }}</span>
 
 
         <div class="row">
             <div class="input-field col s8">
                 <select name="marca" id="marca">
                     @foreach($marcas as $marca)
-                    <option value="{{$marca->id}}">{{ $marca->nombre }}</option>
+                    <option value="{{$marca->id}}">{{$marca->nombre}}</option>
                     @endforeach
                 </select>
                 <label for="marca">Marca:</label>
             </div>
-        </div>
+        </div><span>{{ $errors->first('marca') }}</span>
 
 
         <div class="row">
             <div class="input-field col s8">
                 <select name="categoria" id="cat">
                     @foreach($categorias as $categoria)
-                    <option value="{{$categoria->id}}">{{ $categoria->nombre }}</option>
+                    <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                     @endforeach
                 </select>
                 <label for="categoria">categorias:</label>
             </div>
-        </div>
+        </div><span>{{ $errors->first('categoria') }}</span>
 
 
         <div class="row">
@@ -67,10 +67,21 @@
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text">
             </div><br>
+            <span>{{ $errors->first('imagen') }}</span>
         </div>
         <div class="row">
             <button class="btn blue-grey darken-3" type="submit" name="action">Guardar</button>
         </div>
+        @if(session('mensaje'))
+
+        <div class="row">
+            <p class="cyan-text text-accent-3 col s8">
+                {{ session('mensaje') }}
+
+            </p>
+
+        </div>
+        @endif
     </form>
 </div>
 @endsection
